@@ -1,23 +1,20 @@
 class SinglyLinkedList<T> {
+    // Node class without `inner`
+    class Node<T>(var data: T, var nextNode: Node<T>? = null)
 
-    // Node inner class
-    inner class Node(var data: T, var nextNode: Node? = null)
+    var headNode: Node<T>? = null
+    var size: Int = 0
+        private set
 
-    var headNode: Node? = null // Head node of the linked list
-    var size: Int = 0          // Size of the linked list
-
-    // Function to check if list is empty
     fun isEmpty(): Boolean = headNode == null
 
-    // Inserts new data at the head of the linked list
     fun insertAtHead(data: T) {
-        val newNode = Node(data)
+        val newNode = Node(data) // ✅ No need for an instance of `SinglyLinkedList`
         newNode.nextNode = headNode
         headNode = newNode
         size++
     }
 
-    // Helper function to print the list
     fun printList() {
         if (isEmpty()) {
             println("List is Empty!")
@@ -33,7 +30,7 @@ class SinglyLinkedList<T> {
     }
 }
 
-// 🔹 Example Usage
+// ✅ Example Usage
 fun main() {
     val list = SinglyLinkedList<Int>()
     list.insertAtHead(10)

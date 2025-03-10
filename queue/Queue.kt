@@ -38,6 +38,20 @@ class Queue<V>(private val maxSize: Int) {
         currentSize--
         return temp
     }
+
+    fun printQueue() {
+        if (isEmpty()) {
+            println("Queue is Empty!")
+            return
+        }
+        print("Queue: ")
+        var index = front
+        repeat(currentSize) {
+            print("${array[index]} -> ")
+            index = (index + 1) % maxSize // Circular traversal
+        }
+        println("null")
+    }
 }
 
 // ✅ Example Usage

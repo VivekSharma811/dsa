@@ -31,6 +31,18 @@ class Stack<V>(private val maxSize: Int) {
         if (isEmpty()) return null
         return array[top--] as V // Return value at top and decrement top
     }
+
+    fun printStack() {
+        if (isEmpty()) {
+            println("Stack is Empty!")
+            return
+        }
+        print("Stack (Top -> Bottom): ")
+        for (i in top downTo 0) {
+            print("${array[i]} ")
+        }
+        println()
+    }
 }
 
 // ✅ Example Usage

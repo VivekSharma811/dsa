@@ -1,7 +1,7 @@
 // Given Int array and Int K, Right rotate the array upto K
-// 1. Reverse the whole Array
-// 2. Reverse the K indices from starting
-// 3. Reverse the remaining indices
+// 1. Reverse the whole Array 50, 40, 30, 20, 10
+// 2. Reverse the K indices from starting 30,40, 50, 20, 10
+// 3. Reverse the remaining indices 30, 40, 50, 10, 20
 fun rotateArray() {
     val array = intArrayOf(10, 20, 30, 40, 50)
     val i = 8

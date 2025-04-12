@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
 fun maxProfit(prices: IntArray): Int {
         var minPrice = Int.MAX_VALUE
         var maxProfit = 0

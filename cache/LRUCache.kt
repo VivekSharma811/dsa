@@ -8,7 +8,7 @@ class LRUCache(private val capacity: Int) {
         var prev: Node? = null
     )
 
-    private val map = java.util.HashMap<Int, Int>()
+    private val map = java.util.HashMap<Int, Node>()
     private var head = Node(0,0)
     private var tail = Node(0,0)
 
@@ -40,17 +40,17 @@ class LRUCache(private val capacity: Int) {
         }
     }
 
-    fun moveToFront(node: Node) {
+    private fun moveToFront(node: Node) {
         remove(node)
         addToFront(node)
     }
 
-    fun remove(node: Node) {
+    private fun remove(node: Node) {
         node.next!!.prev = node.prev
         node.prev!!.next = node.next
     }
 
-    fun addToFront(node: Node) {
+    private fun addToFront(node: Node) {
         node.next = head.next
         node.prev = head
         head.next!!.prev = node
@@ -73,11 +73,11 @@ fun main() {
 
     cache.put(1, 10)
     cache.put(2, 20)
-    cache.printLRU()
+    cache.printCacheState()
 
     cache.get(1)
-    cache.printLRU()
+    cache.printCacheState()
 
     cache.put(3, 30)
-    cache.printLRU()
+    cache.printCacheState()
 }

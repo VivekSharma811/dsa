@@ -1,5 +1,22 @@
 import java.util.HashMap
 
+fun main() {
+    val cache = LRUCache(2)
+
+    cache.put(1, 10)
+    cache.put(2, 20)
+    cache.printCacheState()
+
+    cache.get(1)
+    cache.printCacheState()
+
+    cache.put(3, 30)
+    cache.printCacheState()
+
+    cache.put(4, 40)
+    cache.printCacheState()
+}
+
 class LRUCache(private val capacity: Int) {
     private data class Node(
         var key: Int,
@@ -31,7 +48,7 @@ class LRUCache(private val capacity: Int) {
         } else {
             if(map.size == capacity) {
                 val lru = tail.prev!!
-                remove(lru)
+				remove(lru)
                 map.remove(lru.key)
             }
             val newNode = Node(key, value)
@@ -66,18 +83,4 @@ class LRUCache(private val capacity: Int) {
         }
         println("null")
     }
-}
-
-fun main() {
-    val cache = LRUCache(2)
-
-    cache.put(1, 10)
-    cache.put(2, 20)
-    cache.printCacheState()
-
-    cache.get(1)
-    cache.printCacheState()
-
-    cache.put(3, 30)
-    cache.printCacheState()
 }

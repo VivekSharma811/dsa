@@ -1,41 +1,41 @@
 fun main() {
-    val list = getList()
-    println("Current List")
-    list.printList()
-    list.head = reverseKGroup(list.head, 2)
-    println("New List")
-    list.printList()
+    reverseInGroups()
 }
 
-fun reverseKGroup(head: SinglyLinkedList.Node?, k: Int): SinglyLinkedList.Node? {
-    if(head == null || k ==1) return head
+fun reverseInGroups() {
+    val list = getSinglyLinkedList()
+    println("Current List")
+    list.printList()
+    val node = reverseKGroupsRec(list.head, 3)
+    println("New List")
+    list.printList(node)
+}
+
+fun reverseKGroupsRec(head: SinglyLinkedList.Node?, k: Int): SinglyLinkedList.Node? {
+    if(head == null || k == 1) return head
 
     var count = 0
     var node = head
+
     while(node != null && count < k) {
         node = node.next
         count++
     }
 
-    if(count == k) {
-        var prev: SinglyLinkedList.Node? = null
-        var current = head
-        var next: SinglyLinkedList.Node?
+    if(count < k) return head
 
-        var i = 0
+    var prev: SinglyLinkedList.Node? = null
+    var current = head
+    var next: SinglyLinkedList.Node?
 
-        while(i<k && current != null) {
-            next = current.next
-            current.next = prev
-            prev = current
-            current = next
-            i++
-        }
-
-        head.next = reverseKGroup(node, k)
-
-        return prev
+    repeat(k) {
+        next = current?.next
+        current?.next = prev
+        prev = current
+        current = next
     }
 
-    return head
+    head?.next = reverseKGroupsRec(current, k)
+
+    return prev
 }
